@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Budget Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #0f766e;
+    }
+
+    /* Summary Cards */
+    .summary {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      gap: 15px;
+    }
+
+    .summary-card {
+      flex: 1;
+      background: #f1f5f9;
+      border-radius: 15px;
+      text-align: center;
+      padding: 15px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .summary-card h3 {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+
+    .summary-card span {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .income span { color: #16a34a; }
+    .expense span { color: #e11d48; }
+    .balance span { color: #0f766e; }
+
+    /* Inputs */
+    .inputs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    input, select {
+      padding: 12px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: 1px solid #0f766e;
+    }
+
+    input { flex: 1; }
+    select { flex: 0.6; }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: #0f766e;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #115e59;
+    }
+
+    /* Transaction List */
+    ul {
+      list-style: none;
+      margin-top: 20px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background: #f1f5f9;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    li:hover { background: #e2e8f0; }
+
+    .plus { color: #16a34a; font-weight: 600; }
+    .minus { color: #e11d48; font-weight: 600; }
+
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <h1>Budget Tracker</h1>
+
+    <div class="summary">
+      <div class="summary-card income">
+        <h3>Income</h3>
+        <span id="income">0</span>
+      </div>
+      <div class="summary-card expense">
+        <h3>Expense</h3>
+        <span id="expense">0</span>
+      </div>
+      <div class="summary-card balance">
+        <h3>Balance</h3>
+        <span id="balance">0</span>
+      </div>
+    </div>
+
+    <div class="inputs">
+      <input type="text" id="text" placeholder="Description">
+      <input type="number" id="amount" placeholder="Amount">
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+    </div>
+
+    <button onclick="addTransaction()">Add Transaction</button>
+
+    <ul id="list"></ul>
+  </div>
+
+  <script>
+    const list = document.getElementById("list");
+    const incomeEl = document.getElementById("income");
+    const expenseEl = document.getElementById("expense");
+    const balanceEl = document.getElementById("balance");
+
+    let income = 0;
+    let expense = 0;
+
+    function addTransaction() {
+      const text = document.getElementById("text").value;
+      const amount = Number(document.getElementById("amount").value);
+      const type = document.getElementById("type").value;
+
+      if (text === "" || amount === 0) return;
+
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>${text}</span>
+        <span class="${type === 'income' ? 'plus' : 'minus'}">
+          ${type === 'income' ? '+' : '-'}₹${amount}
+        </span>
+      `;
+
+      li.onclick = () => {
+        li.remove();
+        type === "income" ? income -= amount : expense -= amount;
+        update();
+      };
+
+      list.appendChild(li);
+
+      type === "income" ? income += amount : expense += amount;
+      update();
+
+      document.getElementById("text").value = "";
+      document.getElementById("amount").value = "";
+    }
+
+    function update() {
+      incomeEl.textContent = income;
+      expenseEl.textContent = expense;
+      balanceEl.textContent = income - expense;
+    }
+  </script>
+</body>
+</html>
