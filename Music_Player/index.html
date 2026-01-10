@@ -1,77 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Audio X | Music Player</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+    <div id="headder">
+        <h2 id="OnlineExam">Online Exam</h3>
+        <h2 id="time">&#8986;29.30 </h2>
+    </div>
 
-  <div class="app">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <h2 class="logo">Audio X</h2>
-
-      <ul class="menu">
-        <li class="active">Home</li>
-        <li>Search</li>
-        <li>My Library</li>
-        <li>New Playlist</li>
-        <li>Liked Songs</li>
-      </ul>
-
-      <div class="bottom-menu">
-        <p>Settings</p>
-        <p>Logout</p>
-      </div>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <main class="main">
-
-      <!-- HERO -->
-      <section class="hero">
-        <img src="images/artist.jpg" alt="Artist" class="hero-img" />
-
-        <div class="hero-content">
-          <h1>John</h1>
-          <p class="listeners">3,123,354 monthly listeners</p>
-
-          <div class="actions">
-            <button class="play-btn">▶</button>
-            <span class="like">❤</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- SONG LIST -->
-      <section class="songs">
-        <h3>Top Hits</h3>
-
-        <div class="song">
-          <img src="images/album1.jpg" />
-          <div>
-            <h4>Melbourne Sunset</h4>
-            <p>2,238,244</p>
-          </div>
-          <span class="heart">❤</span>
-        </div>
-
-        <div class="song">
-          <img src="images/album2.jpg" />
-          <div>
-            <h4>Every Day</h4>
-            <p>1,878,231</p>
-          </div>
-          <span class="heart">❤</span>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
+    <div id="main_container">
+        <div id="question">
+        <h1 >Questions</h1>
+        <button class="opt">Q1</button>
+        <button class="opt">Q2</button>
+        <button class="opt">Q3</button>
+        <button class="opt">Q4</button>
+        <button class="opt">Q5</button>
+         </div>
+        <div id="ans">
+        <h2>Question 1</h2>
+        <p>Which HTML tag is used to define a responsive viewport?</p>
+        <button class="op"><input type="radio" label="same"><span>&lt;meta&gt;</span></button>
+        <button class="op"><input type="radio" class="same"><span>&lt;viewport&gt;</span></button>
+        <button class="op"><input type="radio" class="same"><span>&lt;responsive&gt;</span></button>
+        <button class="op"><input type="radio" class="same"><span>&lt;screen&gt;</span></button>
+       
+    </div>
+    </div>
 </body>
 </html>
